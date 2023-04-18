@@ -6,13 +6,13 @@ class Solution {
         int min=Integer.MAX_VALUE;
  while(ei<nums.length){
     sum+=nums[ei];
-     if(sum>=k){
+  //   if(sum>=k){
         while(sum>=k){
            sum-=nums[si];    
              min=Math.min((ei-si+1),min);
              si++;
           }
-        }
+    //    }
           
      ei++;
     }
