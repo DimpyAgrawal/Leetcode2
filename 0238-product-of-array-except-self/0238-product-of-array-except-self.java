@@ -1,7 +1,6 @@
 
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-       // int[] ans =product_of_array_except_itself(nums);
        return product_of_array_except_itself(nums);
     
     }
