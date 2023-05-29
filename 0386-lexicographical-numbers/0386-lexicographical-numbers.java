@@ -12,14 +12,10 @@ class Solution {
 			return;
 		if(curr!=0)
             t.add(curr);
-        
-		// int i=0;
 		if(curr==0)
 			i= 1;
-		
 		for(;i<=9;i++) {
 			lexicoCounting(10*curr+i,n,t);
-		}
-		
+		}	
 }
 }
