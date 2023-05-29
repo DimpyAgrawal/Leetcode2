@@ -7,12 +7,13 @@ class Solution {
     	    	
 	
 	public static void lexicoCounting(int curr,int n,ArrayList<Integer> t) {
-		
+		int i=0;
         if(curr>n)
 			return;
 		if(curr!=0)
             t.add(curr);
-		int i=0;
+        
+		// int i=0;
 		if(curr==0)
 			i= 1;
 		
