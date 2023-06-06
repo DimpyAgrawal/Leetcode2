@@ -1,25 +1,29 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
      
-        List<Integer> ll=new ArrayList<>();
-        List<List<Integer>> ans=new ArrayList<>();
+    List<Integer> ds=new ArrayList<>();
+    List<List<Integer>> ans= new ArrayList<>();
+       combination_sum(candidates,target,0,ds,ans); 
         
-        
-        combination(candidates, ll, ans,0,target);
         return ans;
-	}
+        
     
-    public static void combination(int[] arr, List<Integer> ll,  List<List<Integer>> ans,int sum, int target){
+    }
+    
+    public static void combination_sum(int[] arr,int target,int sum,List<Integer> ds, List<List<Integer>> ans){
         if(target==0){
-            ans.add(new ArrayList<>(ll));
+            ans.add(new ArrayList<>(ds));
             return;
         }
-        for(int i=sum;i<arr.length;i++){
-            if(target>=arr[i]){
-                ll.add(arr[i]);
-            combination(arr,ll,ans,i,target-arr[i]);
-            ll.remove(ll.size()-1);
+            
+            
+            
+            for(int i=sum;i<arr.length;i++){
+                if(arr[i]<=target){
+                    ds.add(arr[i]);
+                    combination_sum(arr,target-arr[i],i,ds,ans);
+                    ds.remove(ds.size()-1);
+                }
             }
-        }
     }
 }
