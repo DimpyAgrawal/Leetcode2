@@ -32,11 +32,10 @@ class Solution {
             head=head.next;
         }
        
-            ans2.next=null;
+        ans2.next=null;
         ans.next=l2.next;
-    
-        return l1.next;
         
+        return l1.next;
         
         
 
