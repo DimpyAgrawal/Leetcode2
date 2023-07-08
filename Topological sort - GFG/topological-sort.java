@@ -59,38 +59,75 @@ class Main {
 
 
 class Solution
-{
-    //Function to return list containing vertices in Topological order. 
-    static int[] topoSort(int v, ArrayList<ArrayList<Integer>> adj) 
-    {
-        // add your code here
-        int[] vis =  new int[v];
-        Stack<Integer> st= new Stack<Integer>();
-     
-        
-        for(int i=0;i<v;i++){
-            if(vis[i]==0){
-                dfs(i,vis,st,adj);
+ {
+//     //Function to return list containing vertices in Topological order. 
+static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj)  {
+       
+//       int[] indegree =  new int[v];
+//       for(int i=0;i<v;i++){
+//           for(int it : adj.get(i)){
+//                 indegree[i]++;
+//           }
+//       }
+       
+//       Queue<Integer> q=new LinkedList<>();
+//       for(int i=0;i<v;i++){
+//           if(indegree[i]==0) q.add(i);
+//       }
+       
+       
+//       int[] topo =  new int[v];
+//       int i=0;
+      
+//       while(!q.isEmpty()){
+//           int node=q.peek();
+//           topo[i++]=node;
+//           q.remove();
+//       }
+       
+//       for(int it: adj.get(i)){
+//           indegree[it]--;
+//           if(indegree[i]==0) q.add(i);
+//       }
+//       return topo;
+//     }
+// }
+
+
+    // Function to return list containing vertices in Topological order.
+  //  static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) {
+        int indegree[] = new int[V];
+        for (int i = 0; i < V; i++) {
+            for (int it : adj.get(i)) {
+                indegree[it]++;
             }
         }
-        int[] ans =  new int[v];
-        int i=0;
-        while(!st.isEmpty()){
-            ans[i++]= st.pop();
-        
-        }
-        return ans;
-    }
-    
-    public static void dfs(int node,int[] vis ,   Stack<Integer> st,ArrayList<ArrayList<Integer>> adj ){
-        vis[node]=1;
-        
-        for(int it: adj.get(node)){
-            if(vis[it]==0){
-                 dfs(it,vis,st,adj);
+
+        Queue<Integer> q = new LinkedList<Integer>();
+        ;
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
             }
-          
         }
-          st.push(node);
+
+        int topo[] = new int[V];
+        int i = 0;
+        while (!q.isEmpty()) {
+            int node = q.peek();
+            q.remove();
+            topo[i++] = node;
+            // node is in your topo sort
+            // so please remove it from the indegree
+
+            for (int it : adj.get(node)) {
+                indegree[it]--;
+                if (indegree[it] == 0) {
+                    q.add(it);
+                }
+            }
+        }
+
+        return topo;
     }
 }
