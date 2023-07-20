@@ -13,6 +13,6 @@ class Solution {
             if (setB.contains(x + delta))
                 return new int[]{x, x + delta};
 
-        throw null;
+        return null;
     }
 }
