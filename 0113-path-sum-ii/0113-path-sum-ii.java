@@ -13,41 +13,27 @@
  *     }
  * }
  */
-// class Solution {
-//     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-//         if(root == null) return new ArrayList<>();
-//         return pathsumutil(root,targetSum,0,new ArrayList<>(),new ArrayList<>());
-//     }
-//      List<List<Integer>> pathsumutil(TreeNode root, int targetSum,int sum,List<List<Integer>> ans,List<Integer> sublist){
-       
-//         if(root==null) return ans;
-//         sublist.add(root.val);
-        
-        
-//         if(root.left==null && root.right==null && targetSum+root.val==sum){
-//              ans.add(new ArrayList<>(sublist));
-//         }
-//        pathsumutil(root.left,targetSum,sum+root.val,ans,sublist);
-//            pathsumutil(root.right,targetSum,sum+root.val,ans,sublist);
-//        sublist.remove(sublist.size()-1);
-//         return ans;
-//     }
-// }
-
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        if(root == null) return new ArrayList<>();
-        return helper(root, 0, targetSum, new ArrayList<>(), new ArrayList<>());
+        if (root == null) return new ArrayList<>();
+        return pathSumUtil(root, targetSum, 0, new ArrayList<>(), new ArrayList<>());
     }
-    List<List<Integer>> helper(TreeNode node, int sum, int target, List<List<Integer>> ans, List<Integer> list){
-        if(node == null) return ans;
-        list.add(node.val);
-        if(node.left == null && node.right == null && sum + node.val == target){
-            ans.add(new ArrayList<>(list));
+    
+    List<List<Integer>> pathSumUtil(TreeNode root, int targetSum, int currentSum, List<List<Integer>> ans, List<Integer> sublist) {
+        if (root == null) return ans;
+        
+        sublist.add(root.val);
+        currentSum += root.val;
+        
+        if (root.left == null && root.right == null && currentSum == targetSum) {
+            ans.add(new ArrayList<>(sublist));
         }
-        helper(node.left, sum + node.val, target, ans, list);
-        helper(node.right, sum + node.val, target, ans, list);
-        list.remove(list.size() - 1);
+        
+        pathSumUtil(root.left, targetSum, currentSum, ans, sublist);
+        pathSumUtil(root.right, targetSum, currentSum, ans, sublist);
+        
+        sublist.remove(sublist.size() - 1);
+        
         return ans;
     }
- }
+}
