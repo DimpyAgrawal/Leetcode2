@@ -15,15 +15,14 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        return root==null || symmetricutil(root.left,root.right);
+   return isSymmetricUtil(root.left,root.right);
     }
     
-    static boolean symmetricutil(TreeNode left,TreeNode right){
-        if(left==null || right==null) return(left==right);
+    public static boolean isSymmetricUtil(TreeNode root1,TreeNode root2){
+        if(root1==null ||root2==null) return root1==root2;
+            
+            if(root1.val!=root2.val) return false;
         
-        if(left.val!=right.val) return false;
-        
-        return symmetricutil(left.left,right.right) && symmetricutil(left.right,right.left);
-        
+        return isSymmetricUtil(root1.left,root2.right) && isSymmetricUtil(root1.right,root2.left);
     }
 }
