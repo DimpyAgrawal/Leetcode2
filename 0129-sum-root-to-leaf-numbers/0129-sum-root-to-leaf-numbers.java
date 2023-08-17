@@ -15,19 +15,17 @@
  */
 class Solution {
     public int sumNumbers(TreeNode root) {
-        return helpersumNumbers(root,0);
-        
+     return numbers(root,0);
     }
     
-    public int helpersumNumbers(TreeNode root, int curr){
+    public int numbers(TreeNode root , int sum){
         if(root==null) return 0;
         
-        curr= curr*10+root.val;
+        if(root.left==null && root.right==null) return sum*10+root.val;
         
-        if(root.left==null && root.right==null) return curr;
+        int left = numbers(root.left,sum*10+root.val);
+         int right = numbers(root.right,sum*10+root.val);
+        return left+right;
         
-        int leftsum = helpersumNumbers(root.left,curr);
-        int rightsum = helpersumNumbers(root.right,curr);
-        return leftsum+rightsum;
     }
 }
