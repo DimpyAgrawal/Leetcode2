@@ -10,7 +10,7 @@ class Solution {
                 j--;
             }
             else{
-                return Util(s,i+1,j) || Util(s,i,j-1);
+                return Util(s,i+1,j)  || Util(s,i,j-1);
             }
           
         }
