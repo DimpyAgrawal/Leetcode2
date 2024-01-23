@@ -15,14 +15,27 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return bst(root,Long.MIN_VALUE,Long.MAX_VALUE);
+        return validBST(root).isbst;
        
     }
-    public boolean bst(TreeNode root,long min,long max){
-        if(root==null) return true;
+    public diapair validBST(TreeNode node){
+        if(node==null) return new diapair();
+        diapair l = validBST(node.left);
+        diapair r = validBST(node.right);
+        diapair sdp = new diapair();
         
-        if(root.val<=min || root.val>=max) return false;
-        
-        return bst(root.left,min,root.val) && bst(root.right,root.val,max);
-    } 
+        sdp.maxSum = Math.max(l.maxSum,(Math.max(r.maxSum,node.val)));
+         sdp.minSum = Math.min(l.minSum,(Math.min(r.minSum,node.val)));
+        if(l.isbst && r.isbst &&l.maxSum<node.val && r.minSum>node.val) sdp.isbst=true;
+        else sdp.isbst = false;
+        return sdp;
+    }
+    
+    
+    class diapair{
+        boolean isbst = true;
+        long maxSum = Long.MIN_VALUE;
+        long minSum = Long.MAX_VALUE;
+    }
+   
 }
