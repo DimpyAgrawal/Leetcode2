@@ -1,16 +1,10 @@
 class Solution {
     public int countNumbersWithUniqueDigits(int n) {
        if(n==0) return 1;
-        
-        int ans=10,curr=9,a=9;
-        while(n>1 && a>0){
-            
-            curr*=a;
-            a--;
-            ans+=curr;
-            n--;
+       int c=9;
+        for(int i=2;i<=n;i++){
+            c=c*(11-i);
         }
-        return ans;
-        
+       return c+ countNumbersWithUniqueDigits(n-1);
     }
 }
