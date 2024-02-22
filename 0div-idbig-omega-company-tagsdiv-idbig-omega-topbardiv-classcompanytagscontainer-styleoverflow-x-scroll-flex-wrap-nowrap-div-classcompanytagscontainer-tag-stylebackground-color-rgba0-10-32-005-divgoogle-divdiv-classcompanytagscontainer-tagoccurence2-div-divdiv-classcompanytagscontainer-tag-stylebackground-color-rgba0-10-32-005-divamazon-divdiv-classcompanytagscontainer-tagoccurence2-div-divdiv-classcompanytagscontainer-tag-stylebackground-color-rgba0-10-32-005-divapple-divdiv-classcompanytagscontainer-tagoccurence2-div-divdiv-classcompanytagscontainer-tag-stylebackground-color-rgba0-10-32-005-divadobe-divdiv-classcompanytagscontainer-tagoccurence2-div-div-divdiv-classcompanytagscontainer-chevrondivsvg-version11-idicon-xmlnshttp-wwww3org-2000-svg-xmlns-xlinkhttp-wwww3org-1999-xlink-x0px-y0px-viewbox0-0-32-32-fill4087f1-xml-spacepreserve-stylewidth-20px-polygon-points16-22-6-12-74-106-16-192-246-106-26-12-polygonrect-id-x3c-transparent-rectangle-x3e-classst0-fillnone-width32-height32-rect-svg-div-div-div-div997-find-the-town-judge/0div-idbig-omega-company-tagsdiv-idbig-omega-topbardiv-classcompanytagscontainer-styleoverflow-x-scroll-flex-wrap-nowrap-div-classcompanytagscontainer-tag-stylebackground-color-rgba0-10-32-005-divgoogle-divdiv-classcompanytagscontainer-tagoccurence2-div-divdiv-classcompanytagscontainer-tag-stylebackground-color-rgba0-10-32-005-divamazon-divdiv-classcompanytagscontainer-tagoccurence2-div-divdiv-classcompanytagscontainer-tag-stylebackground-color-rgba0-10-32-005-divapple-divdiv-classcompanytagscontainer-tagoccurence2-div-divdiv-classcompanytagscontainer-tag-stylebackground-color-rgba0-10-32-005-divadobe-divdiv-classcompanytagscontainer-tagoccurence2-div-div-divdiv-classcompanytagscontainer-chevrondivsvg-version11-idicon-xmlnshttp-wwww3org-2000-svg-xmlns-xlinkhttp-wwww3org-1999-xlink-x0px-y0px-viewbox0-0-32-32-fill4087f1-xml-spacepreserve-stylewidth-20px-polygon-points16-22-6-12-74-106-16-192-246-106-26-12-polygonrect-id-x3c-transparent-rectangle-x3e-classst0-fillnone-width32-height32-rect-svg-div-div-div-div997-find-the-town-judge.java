@@ -5,6 +5,8 @@ class Solution {
 
         for(int i=0;i<trust.length;i++){
             out[trust[i][0]]++;
+            System.out.print(trust[i][0]+" ");
+            System.out.print(trust[i][1]+" ");
             in[trust[i][1]]++;
         }
         for(int i=1;i<=n;i++){
